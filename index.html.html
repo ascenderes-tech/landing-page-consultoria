@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consultoria em Eficiência Operacional | Cida Moreira | AscenDeres</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1C2B48;
+    --navy-dark:#141E36;
+    --copper:#C28E79;
+    --copper-light:#E7D5C9;
+    --cream:#FAF9F7;
+    --card:#F1EDE9;
+    --grey:#5A5A5A;
+    --lgrey:#8A8A8A;
+    --green:#4C9A6E;
+    --red:#B0432E;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Barlow', sans-serif;
+    color:var(--navy);
+    background:var(--cream);
+    line-height:1.5;
+  }
+  h1,h2,h3, .display{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:700;
+    letter-spacing:0.2px;
+  }
+  .eyebrow{
+    font-family:'Barlow', sans-serif;
+    font-size:0.78rem;
+    font-weight:700;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--copper);
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:min(1400px, 94vw); margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,30,54,0.96);
+    backdrop-filter:blur(6px);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:14px; padding-bottom:14px;
+  }
+  .brand{font-family:'Barlow Condensed', sans-serif; font-weight:700; color:#fff; font-size:1.1rem; letter-spacing:1px; line-height:1.3;}
+  .brand .brand-tagline{
+    display:block; font-family:'Barlow', sans-serif; font-weight:600;
+    color:var(--copper); font-size:0.68rem; letter-spacing:0.4px; text-transform:none;
+    margin-top:2px;
+  }
+  nav a.cta-nav{
+    background:var(--copper); color:var(--navy-dark); font-weight:700;
+    padding:9px 20px; border-radius:999px; font-size:0.88rem; white-space:nowrap;
+  }
+
+  /* HERO */
+  header.hero{
+    background:var(--navy-dark);
+    color:#fff;
+    padding:72px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::before{
+    content:"";
+    position:absolute; top:-160px; right:-120px;
+    width:420px; height:420px; border-radius:50%;
+    background:var(--navy); opacity:0.55;
+  }
+  header.hero::after{
+    content:"";
+    position:absolute; bottom:-140px; left:-100px;
+    width:320px; height:320px; border-radius:50%;
+    background:var(--copper); opacity:0.08;
+  }
+  .hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center;}
+  .hero-hook{
+    position:relative; z-index:2;
+    display:inline-block; max-width:620px; line-height:1.4;
+    background:rgba(194,142,121,0.14); border:1px solid rgba(194,142,121,0.4);
+    color:var(--copper-light); font-size:0.85rem; font-weight:600;
+    padding:9px 18px; border-radius:16px; margin-bottom:22px;
+  }
+  .hero h1{font-size:3.1rem; line-height:1.05; margin:18px 0 20px;}
+  .hero p.sub{font-size:1.15rem; color:#C9D2E3; font-style:italic; max-width:520px; margin-bottom:28px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--copper); color:var(--navy-dark); font-weight:700;
+    padding:14px 26px; border-radius:8px; font-size:0.98rem; display:inline-block;
+    transition:transform .15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    border:1.5px solid #4A5A80; color:#fff; font-weight:600;
+    padding:13px 24px; border-radius:8px; font-size:0.98rem; display:inline-block;
+  }
+
+  /* CALCULATOR CARD */
+  .calc-card{
+    background:var(--navy);
+    border:1px solid #33456B;
+    border-radius:16px;
+    padding:28px 26px;
+  }
+  .calc-card h3{font-size:1.3rem; color:#fff; margin-bottom:4px;}
+  .calc-card .calc-sub{font-size:0.85rem; color:#9FADC7; margin-bottom:20px;}
+  .calc-row{margin-bottom:16px;}
+  .calc-row label{display:block; font-size:0.82rem; color:#C9D2E3; margin-bottom:6px; font-weight:600;}
+  .calc-row input[type=range]{width:100%; accent-color:var(--copper);}
+  .calc-row .val{color:var(--copper); font-weight:700;}
+  .calc-result{
+    margin-top:22px; padding:18px; background:var(--navy-dark); border-radius:10px;
+    border:1px solid #33456B;
+  }
+  .calc-result .num{font-family:'Barlow Condensed'; font-weight:700; font-size:2.4rem; color:#6FCF97; line-height:1;}
+  .calc-result .label{font-size:0.82rem; color:#9FADC7; margin-top:4px;}
+
+  /* EXPECTATIVAS (checklist) */
+  .expect{background:var(--card); padding:44px 0;}
+  .expect-list{display:grid; grid-template-columns:repeat(3,1fr); gap:18px 32px;}
+  .expect-item{
+    display:flex; align-items:flex-start; gap:12px;
+    font-size:1rem; font-weight:600; color:var(--navy);
+  }
+  .expect-item .check{
+    color:#fff; background:var(--green); border-radius:50%;
+    width:24px; height:24px; min-width:24px; display:flex; align-items:center; justify-content:center;
+    font-size:0.8rem; font-weight:700;
+  }
+
+  /* CHAMARIZ DAS 2 CALCULADORAS */
+  .promo-calc{
+    background:var(--copper); padding:36px 0;
+  }
+  .promo-calc .wrap{
+    display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  }
+  .promo-calc .promo-text{max-width:680px;}
+  .promo-calc .promo-eyebrow{
+    font-size:0.78rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    color:var(--navy-dark); opacity:0.75; margin-bottom:6px;
+  }
+  .promo-calc h3{font-size:1.4rem; color:var(--navy-dark); font-family:'Barlow Condensed'; font-weight:700; line-height:1.3;}
+  .promo-calc p{font-size:0.95rem; color:#5B4536; margin-top:6px;}
+  .promo-calc .btn-promo{
+    background:var(--navy-dark); color:#fff; font-weight:700;
+    padding:14px 26px; border-radius:8px; font-size:0.95rem; white-space:nowrap;
+    display:inline-block;
+  }
+
+  /* SECTIONS */
+  section{padding:76px 0;}
+  .section-head{max-width:640px; margin-bottom:44px;}
+  .section-head h2{font-size:2.3rem; color:var(--navy); margin-top:10px;}
+
+  /* PILLARS */
+  .pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .pillar{
+    background:#fff; border:1px solid #E5DED7; border-radius:14px; padding:30px 26px;
+    box-shadow:0 4px 18px rgba(28,43,72,0.05);
+  }
+  .pillar .n{font-family:'Barlow Condensed'; font-weight:700; font-size:2rem; color:var(--copper-light); margin-bottom:8px;}
+  .pillar h3{font-size:1.2rem; margin-bottom:8px; color:var(--navy);}
+  .pillar p{font-size:0.95rem; color:var(--grey);}
+
+  /* RESULTADOS OBTIDOS (prova social) */
+  .cases-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .case-card{
+    background:#fff; border:1px solid #E5DED7; border-radius:14px; padding:30px 28px;
+    box-shadow:0 4px 18px rgba(28,43,72,0.05);
+  }
+  .case-card .tag{
+    display:inline-block; font-size:0.72rem; font-weight:700; letter-spacing:1px;
+    color:var(--navy); background:var(--card); padding:4px 12px; border-radius:999px; margin-bottom:14px;
+  }
+  .case-card h4{font-size:1.2rem; color:var(--navy); margin-bottom:14px;}
+  .case-list{list-style:none; margin-bottom:18px;}
+  .case-list li{
+    display:flex; align-items:flex-start; gap:10px; font-size:0.92rem; color:var(--grey);
+    margin-bottom:8px;
+  }
+  .case-list li .check{color:var(--green); font-weight:700;}
+  .case-card .case-link{
+    display:inline-block; font-size:0.88rem; font-weight:700; color:var(--copper);
+    border-bottom:1.5px solid var(--copper); padding-bottom:2px;
+  }
+
+  /* GOOGLE ECOSYSTEM EXAMPLES */
+  .eco{background:var(--navy-dark); color:#fff;}
+  .eco .section-head h2{color:#fff;}
+  .eco-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .eco-card{
+    background:var(--navy); border:1px solid #2C3B5D; border-radius:14px; padding:26px 24px;
+  }
+  .eco-card .tool-tag{
+    display:inline-block; font-size:0.72rem; font-weight:700; letter-spacing:1px;
+    color:var(--navy-dark); background:var(--copper-light); padding:4px 10px; border-radius:999px; margin-bottom:14px;
+  }
+  .eco-card h4{font-size:1.05rem; margin-bottom:8px; color:#fff;}
+  .eco-card p{font-size:0.9rem; color:#B9C4DC;}
+  .eco-note{
+    margin-top:32px; font-size:0.9rem; color:#9FADC7; border-top:1px solid #2C3B5D; padding-top:22px;
+  }
+  .eco-note strong{color:var(--copper-light);}
+
+  /* DIFERENCIAL */
+  .diff-list{display:grid; grid-template-columns:1fr 1fr; gap:16px 32px; max-width:820px;}
+  .diff-item{
+    display:flex; align-items:flex-start; gap:12px;
+    font-size:1.02rem; font-weight:600; color:var(--navy);
+    background:#fff; border:1px solid #E5DED7; border-radius:10px; padding:16px 18px;
+  }
+  .diff-item .check{color:var(--green); font-weight:700; font-size:1.1rem;}
+
+  /* PROCESS */
+  .steps{border-left:2px solid var(--copper-light); margin-left:22px;}
+  .step{position:relative; padding:0 0 36px 34px;}
+  .step:last-child{padding-bottom:0;}
+  .step::before{
+    content:attr(data-n);
+    position:absolute; left:-22px; top:0;
+    width:44px; height:44px; border-radius:50%;
+    background:var(--navy); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Barlow Condensed'; font-weight:700; font-size:1.15rem;
+  }
+  .step h4{font-size:1.15rem; color:var(--navy); margin-bottom:6px;}
+  .step p{font-size:0.95rem; color:var(--grey); max-width:560px;}
+
+  /* FAQ */
+  .faq-item{
+    border-bottom:1px solid #E5DED7; padding:20px 0;
+  }
+  .faq-item:first-child{border-top:1px solid #E5DED7;}
+  .faq-q{font-size:1.05rem; font-weight:700; color:var(--navy); margin-bottom:6px;}
+  .faq-a{font-size:0.95rem; color:var(--grey);}
+
+  /* MAPEAMENTO RÁPIDO */
+  .map-card{
+    background:#fff; border:1px solid #E5DED7; border-radius:16px;
+    padding:34px 32px; max-width:640px;
+    box-shadow:0 4px 18px rgba(28,43,72,0.05);
+  }
+  .map-row{margin-bottom:20px;}
+  .map-row label{display:block; font-size:0.88rem; font-weight:600; color:var(--navy); margin-bottom:8px;}
+  .map-row input[type=text], .map-row textarea, .map-row select{
+    width:100%; border:1px solid #D9D2CA; border-radius:8px; padding:12px 14px;
+    font-family:'Barlow', sans-serif; font-size:0.95rem; color:var(--navy);
+    background:var(--cream); resize:vertical;
+  }
+  .map-row input[type=text]:focus, .map-row textarea:focus, .map-row select:focus{
+    outline:none; border-color:var(--copper);
+  }
+  .map-btn{border:none; cursor:pointer; width:100%; text-align:center; font-size:1rem;}
+  .map-hint{font-size:0.8rem; color:var(--lgrey); margin-top:12px; text-align:center;}
+
+  /* CALCULADORA DE CUSTO (dinheiro) */
+  .money-section{background:var(--navy-dark); color:#fff;}
+  .money-section .section-head h2{color:#fff;}
+  .money-card{
+    background:var(--navy); border:1px solid #33456B; border-radius:16px;
+    padding:36px 34px; max-width:640px;
+  }
+  .money-row{margin-bottom:22px;}
+  .money-row label{display:block; font-size:0.88rem; color:#C9D2E3; margin-bottom:8px; font-weight:600;}
+  .money-row input[type=range]{width:100%; accent-color:var(--copper);}
+  .money-row .val{color:var(--copper); font-weight:700;}
+  .clt-toggle{
+    background:var(--navy-dark); border:1px solid #33456B; border-radius:10px;
+    padding:14px 16px;
+  }
+  .clt-label{display:flex; align-items:center; gap:10px; cursor:pointer; margin-bottom:0;}
+  .clt-label input[type=checkbox]{width:18px; height:18px; accent-color:var(--copper); cursor:pointer;}
+  .clt-label span{font-size:0.92rem; font-weight:600; color:#fff;}
+  .clt-hint{font-size:0.78rem; color:#8FA0BF; margin-top:8px; line-height:1.4;}
+  .money-result{
+    margin-top:26px; padding:24px; background:var(--navy-dark); border-radius:12px;
+    border:1px solid #33456B; text-align:center;
+  }
+  .money-result .pre{font-size:0.9rem; color:#9FADC7; margin-bottom:8px;}
+  .money-result .num{font-family:'Barlow Condensed'; font-weight:700; font-size:3rem; color:#6FCF97; line-height:1;}
+  .money-result .post{font-size:0.8rem; color:#7686A6; margin-top:8px; font-style:italic;}
+  .money-projection{
+    display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;
+  }
+  .proj-card{
+    background:var(--navy-dark); border:1px solid #33456B; border-radius:10px;
+    padding:16px 14px; text-align:center;
+  }
+  .proj-card .proj-label{font-size:0.78rem; color:#9FADC7; margin-bottom:4px;}
+  .proj-card .proj-num{font-family:'Barlow Condensed'; font-weight:700; font-size:1.5rem; color:var(--copper-light);}
+
+  /* SOBRE / AUTORIDADE */
+  .about{background:#fff;}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start;}
+  .about-avatar{
+    width:96px; height:96px; border-radius:50%;
+    background:var(--navy); color:var(--copper-light);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Barlow Condensed'; font-weight:700; font-size:2.1rem;
+    margin-bottom:22px;
+  }
+  .segment-tags{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 16px;}
+  .segment-tags span{
+    background:var(--card); border:1px solid #E5DED7; border-radius:999px;
+    padding:6px 14px; font-size:0.85rem; font-weight:600; color:var(--navy);
+  }
+  .about-bio h3{font-size:1.5rem; color:var(--navy); margin-bottom:4px;}
+  .about-bio .role{font-size:0.92rem; color:var(--copper); font-weight:600; margin-bottom:16px;}
+  .about-bio p{font-size:0.98rem; color:var(--grey); margin-bottom:14px; max-width:440px;}
+
+  .results-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .result-card{
+    background:var(--card); border-radius:12px; padding:22px 20px;
+  }
+  .result-card .num{font-family:'Barlow Condensed'; font-weight:700; font-size:1.9rem; color:var(--navy); line-height:1.1;}
+  .result-card .desc{font-size:0.85rem; color:var(--grey); margin-top:6px;}
+
+  /* CTA FINAL */
+  .cta-final{
+    background:var(--copper);
+    border-radius:20px;
+    padding:56px 48px;
+    display:flex; justify-content:space-between; align-items:center; gap:32px; flex-wrap:wrap;
+  }
+  .cta-final h2{color:var(--navy-dark); font-size:2rem; max-width:520px;}
+  .cta-final p{color:#5B4536; margin-top:8px; font-size:0.98rem; max-width:480px;}
+  .cta-final .btn-primary{background:var(--navy-dark); color:#fff;}
+
+  footer{background:var(--navy-dark); color:#9FADC7; padding:36px 0; font-size:0.85rem;}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+  footer strong{color:#fff;}
+  footer .footer-links{display:flex; gap:16px; flex-wrap:wrap;}
+  footer .footer-links a{color:#9FADC7; text-decoration:none;}
+  footer .footer-links a:hover{color:var(--copper-light); text-decoration:underline;}
+
+  /* BOTÃO FLUTUANTE WHATSAPP */
+  .whatsapp-float{
+    position:fixed; bottom:24px; right:24px; z-index:100;
+    background:#25D366; color:#fff; width:58px; height:58px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+    font-size:1.6rem; transition:transform .15s ease;
+  }
+  .whatsapp-float:hover{transform:scale(1.08);}
+
+  /* ===== RESPONSIVIDADE ===== */
+
+  /* MONITOR GRANDE / WIDESCREEN (a partir de 1440px) */
+  @media(min-width:1440px){
+    .hero h1{font-size:3.6rem;}
+    .hero p.sub{font-size:1.25rem; max-width:580px;}
+    .hero-inner{gap:64px;}
+    .section-head h2{font-size:2.6rem;}
+    .about-grid{gap:72px;}
+    .money-card, .calc-card{padding:34px 32px;}
+  }
+
+  /* TABLET (até 1024px) */
+  @media(max-width:1024px){
+    .wrap{padding:0 22px;}
+    section{padding:56px 0;}
+    .hero-inner{gap:32px;}
+    .hero h1{font-size:2.5rem;}
+    .about-grid{grid-template-columns:1fr; gap:36px;}
+    .results-grid{grid-template-columns:1fr 1fr;}
+    .cases-grid{grid-template-columns:1fr; gap:20px;}
+    .diff-list{grid-template-columns:1fr 1fr; max-width:100%;}
+    .expect-list{grid-template-columns:1fr 1fr;}
+  }
+
+  /* CELULAR (até 680px) */
+  @media(max-width:680px){
+    .promo-calc .wrap{flex-direction:column; align-items:flex-start;}
+    .promo-calc .btn-promo{width:100%; text-align:center;}
+    .wrap{padding:0 18px;}
+    section{padding:44px 0;}
+    nav .wrap{height:56px;}
+    .brand{font-size:0.95rem;}
+    .brand .brand-tagline{font-size:0.6rem;}
+    nav a.cta-nav{padding:7px 14px; font-size:0.8rem;}
+
+    header.hero{padding:40px 0 40px;}
+    .hero-hook{font-size:0.78rem; padding:8px 14px; margin-bottom:16px;}
+    .hero-inner{grid-template-columns:1fr; gap:28px;}
+    .calc-card{order:1;}
+    .hero-text{order:2;}
+    .hero h1{font-size:1.9rem; margin:14px 0 16px;}
+    .hero p.sub{font-size:1rem;}
+    .hero-ctas{flex-direction:column; align-items:stretch;}
+    .hero-ctas a{text-align:center;}
+
+    .calc-card, .money-card, .map-card{padding:22px 20px;}
+    .calc-result .num{font-size:1.9rem;}
+    .money-result .num{font-size:2.2rem;}
+
+    .section-head h2{font-size:1.7rem;}
+
+    .expect-list{grid-template-columns:1fr; gap:12px;}
+    .pillars, .eco-grid{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr; gap:24px;}
+    .results-grid{grid-template-columns:1fr;}
+    .cases-grid{grid-template-columns:1fr;}
+    .diff-list{grid-template-columns:1fr;}
+
+    .cta-final{padding:32px 24px; flex-direction:column; align-items:flex-start;}
+    .cta-final h2{font-size:1.5rem;}
+    .cta-final .btn-primary{width:100%; text-align:center;}
+
+    footer .wrap{flex-direction:column; align-items:flex-start; gap:8px;}
+
+    .whatsapp-float{width:50px; height:50px; font-size:1.35rem; bottom:16px; right:16px;}
+  }
+
+  /* CELULAR PEQUENO (até 380px) */
+  @media(max-width:380px){
+    .hero h1{font-size:1.6rem;}
+    .section-head h2{font-size:1.45rem;}
+    .about-avatar{width:76px; height:76px; font-size:1.7rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">AscenDeres<span class="brand-tagline">Consultoria em Diagnóstico &amp; Transformação Digital</span></div>
+    <a class="cta-nav" href="#diagnostico">Diagnóstico gratuito</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-hook">⚡ Sua operação pode estar perdendo horas <strong>e</strong> dinheiro agora mesmo — descubra o quanto em 30 segundos, com os 2 testes aqui</div>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">Consultoria em Eficiência Operacional</p>
+      <h1>Sua operação não precisa<br>de sistema novo.<br>Precisa parar de depender<br>de trabalho manual.</h1>
+      <p class="sub">Mapeamos processos, eliminamos desperdícios e implementamos automações inteligentes utilizando as ferramentas que sua empresa já possui.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#diagnostico">Quero meu diagnóstico gratuito</a>
+        <a class="btn-ghost" href="#exemplos">Ver exemplos práticos</a>
+      </div>
+    </div>
+
+    <div class="calc-card">
+      <h3>Quanto o trabalho manual custa por mês?</h3>
+      <p class="calc-sub">Ajuste os controles com base numa atividade repetitiva da sua equipe.</p>
+
+      <div class="calc-row">
+        <label>Tempo gasto por tarefa: <span class="val" id="minVal">5 min</span></label>
+        <input type="range" id="minutos" min="1" max="600" value="5">
+      </div>
+      <div class="calc-row">
+        <label>Quantas vezes por dia: <span class="val" id="freqVal">40</span></label>
+        <input type="range" id="frequencia" min="1" max="150" value="40">
+      </div>
+
+      <div class="calc-result">
+        <div class="num" id="horasMes">14,7h</div>
+        <div class="label">horas recuperadas por mês, considerando 90% de automação da tarefa (22 dias úteis)</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="expect">
+  <div class="wrap">
+    <div class="expect-list">
+      <div class="expect-item"><span class="check">✓</span> Redução de retrabalho</div>
+      <div class="expect-item"><span class="check">✓</span> Mais produtividade da equipe</div>
+      <div class="expect-item"><span class="check">✓</span> Menos erros operacionais</div>
+      <div class="expect-item"><span class="check">✓</span> Atendimento mais rápido</div>
+      <div class="expect-item"><span class="check">✓</span> Mais tempo para vender e atender clientes</div>
+    </div>
+  </div>
+</section>
+
+<section class="promo-calc">
+  <div class="wrap">
+    <div class="promo-text">
+      <div class="promo-eyebrow">🧮 Duas calculadoras, uma resposta clara</div>
+      <h3>Descubra o quanto sua equipe pode estar sendo ineficiente</h3>
+      <p>Você já viu quanto tempo isso consome. Agora veja quanto isso custa em reais — role para baixo e use a segunda calculadora.</p>
+    </div>
+    <a href="#calculadora-custo" class="btn-promo">Ver quanto isso custa em R$ →</a>
+  </div>
+</section>
+
+<section id="pilares">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Como eu trabalho</p>
+      <h2>Três pilares, sem complicação</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="n">01</div>
+        <h3>Diagnóstico antes de ferramenta</h3>
+        <p>Mapeio, em uma conversa de 20 minutos, onde exatamente a operação perde mais tempo hoje — antes de decidir qualquer solução.</p>
+      </div>
+      <div class="pillar">
+        <div class="n">02</div>
+        <h3>Automação sob medida</h3>
+        <p>Aplico a automação certa pro seu contexto — Google Workspace, Microsoft 365 ou uma IA específica — sempre priorizando o que sua empresa já usa.</p>
+      </div>
+      <div class="pillar">
+        <div class="n">03</div>
+        <h3>Disseminação de IA no time</h3>
+        <p>Capacito sua equipe pra usar e manter a solução sozinha — o objetivo é a operação ficar independente, não dependente de mim.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="money-section" id="calculadora-custo">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">O número que realmente importa</p>
+      <h2>Quanto custa esse retrabalho?</h2>
+    </div>
+    <div class="money-card">
+      <div class="money-row">
+        <label>Funcionários envolvidos nessa tarefa: <span class="val" id="funcVal">5</span></label>
+        <input type="range" id="funcionarios" min="1" max="30" value="5">
+      </div>
+      <div class="money-row">
+        <label>Salário médio: <span class="val" id="salVal">R$ 3.000</span></label>
+        <input type="range" id="salario" min="800" max="10000" step="100" value="3000">
+      </div>
+      <div class="money-row clt-toggle">
+        <label class="clt-label">
+          <input type="checkbox" id="cltCheck" checked>
+          <span>Funcionário CLT (considerar encargos trabalhistas)</span>
+        </label>
+        <p class="clt-hint">Com carteira assinada, o custo real pra empresa é maior que o salário — FGTS, INSS, férias, 13º e outros encargos costumam somar cerca de 80% a mais sobre o salário bruto.</p>
+      </div>
+      <div class="money-row">
+        <label>Horas perdidas por mês (total da equipe): <span class="val" id="horasVal">66</span></label>
+        <input type="range" id="horasPerdidas" min="5" max="200" value="66">
+      </div>
+
+      <div class="money-result">
+        <div class="pre">Sua operação pode estar desperdiçando aproximadamente</div>
+        <div class="num" id="custoMes">R$ 4.500</div>
+        <div class="pre" style="margin-top:2px;">por mês</div>
+        <div class="post">(estimativa com base no valor-hora médio da equipe)</div>
+
+        <div class="money-projection">
+          <div class="proj-card">
+            <div class="proj-label">Em 6 meses</div>
+            <div class="proj-num" id="custo6m">R$ 27.000</div>
+          </div>
+          <div class="proj-card">
+            <div class="proj-label">Em 12 meses</div>
+            <div class="proj-num" id="custo12m">R$ 54.000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Quem vai conduzir seu diagnóstico</p>
+      <h2>Não é teoria de curso — é operação que eu vivi</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-bio">
+        <div class="about-avatar">CM</div>
+        <h3>Cida Moreira</h3>
+        <p class="role">Especialista em Processos, Operações, Automação e IA</p>
+        <p>Mais de 14 anos transformando operações em empresas de diferentes segmentos — experiência construída em multinacionais e startups de:</p>
+        <div class="segment-tags">
+          <span>⚡ Energia</span><span>🏥 Saúde</span><span>🎓 Educação</span><span>💻 Tecnologia</span>
+        </div>
+        <p>Hoje aplico essa mesma metodologia de diagnóstico e mapeamento de processo em pequenas e médias empresas, sempre respeitando a realidade e o orçamento de cada negócio.</p>
+        <p>Formada em Tecnologia e Inovação, com especialização em Gestão de Processos Gerenciais pela PUC e em Transformação Digital para Negócios pela USP. Também atuo como palestrante na Baixada Santista.</p>
+      </div>
+      <div class="results-grid">
+        <div class="result-card">
+          <div class="num">30min → 15s</div>
+          <div class="desc">Tempo de um processo de auditoria médica, depois de automatizado</div>
+        </div>
+        <div class="result-card">
+          <div class="num">Ruim → Bom</div>
+          <div class="desc">Reputação no Reclame Aqui revertida em 3 meses</div>
+        </div>
+        <div class="result-card">
+          <div class="num">60%</div>
+          <div class="desc">Otimização de equipe alcançada em projeto de melhoria contínua</div>
+        </div>
+        <div class="result-card">
+          <div class="num">50%</div>
+          <div class="desc">Redução no tempo de onboarding em projeto de multinacional do setor de energia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resultados">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Resultados obtidos</p>
+      <h2>O que já foi entregue na prática</h2>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card">
+        <span class="tag">EMPRESA DO SETOR DE EDUCAÇÃO</span>
+        <h4>Lab AscenDeres — plataforma corporativa de capacitação</h4>
+        <ul class="case-list">
+          <li><span class="check">✓</span> Certificados automáticos</li>
+          <li><span class="check">✓</span> Controle de presença</li>
+          <li><span class="check">✓</span> Trilha de aprendizagem</li>
+          <li><span class="check">✓</span> Plataforma criada com ferramentas acessíveis</li>
+        </ul>
+        <a class="case-link" href="#" target="_blank">Ver vídeo →</a>
+      </div>
+      <div class="case-card">
+        <span class="tag">MICROEMPREENDEDOR</span>
+        <h4>Mentoria para estruturar solução digital própria</h4>
+        <ul class="case-list">
+          <li><span class="check">✓</span> Estruturou sua operação</li>
+          <li><span class="check">✓</span> Criou sua solução digital</li>
+          <li><span class="check">✓</span> Automatizou processos</li>
+        </ul>
+        <a class="case-link" href="https://www.instagram.com/ascenderes" target="_blank">Assistir depoimento →</a>
+      </div>
+      <div class="case-card">
+        <span class="tag">PALESTRA / ATIVAÇÃO</span>
+        <h4>Empreendendo com IA — mais de 100 jovens</h4>
+        <ul class="case-list">
+          <li><span class="check">✓</span> Mais de 100 jovens empreendedores participantes</li>
+          <li><span class="check">✓</span> Criaram aplicações próprias usando IA</li>
+          <li><span class="check">✓</span> Resolveram problemas reais com ferramentas gratuitas</li>
+        </ul>
+        <a class="case-link" href="https://www.linkedin.com/posts/cida-moreirasouza_empreendendocomia-startup-lowcode-activity-7465547299599933442-Icma" target="_blank">Ver publicação →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="eco" id="exemplos">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Exemplos reais</p>
+      <h2>Automação com o que sua empresa já usa</h2>
+    </div>
+    <div class="eco-grid">
+      <div class="eco-card">
+        <span class="tool-tag">GOOGLE WORKSPACE</span>
+        <h4>Tratativa automática de e-mail e formulários</h4>
+        <p>Classificação de mensagens, formulário que já organiza pedidos numa planilha, relatório que se gera e envia sozinho — usando Gmail, Sheets e Forms.</p>
+      </div>
+      <div class="eco-card">
+        <span class="tool-tag">MICROSOFT 365</span>
+        <h4>Fluxos automáticos no Outlook e Excel</h4>
+        <p>Regras de e-mail, planilhas dinâmicas e automações simples com Power Automate para quem já opera no ecossistema Microsoft.</p>
+      </div>
+      <div class="eco-card">
+        <span class="tool-tag">IA APLICADA</span>
+        <h4>Assistentes para tarefas específicas</h4>
+        <p>Uso direcionado de ferramentas de IA (gratuitas ou com assinatura de baixo custo) para triagem, atendimento ou geração de conteúdo — só quando o diagnóstico indicar que vale o investimento.</p>
+      </div>
+    </div>
+    <div class="eco-note">
+      <strong>Como decido a ferramenta:</strong> o diagnóstico vem primeiro, sempre. Priorizo o que sua empresa já usa e paga hoje. Uma ferramenta paga só entra na conversa se o resultado do piloto justificar — nunca como ponto de partida.
+    </div>
+  </div>
+</section>
+
+<section id="diferencial">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Por que a AscenDeres</p>
+      <h2>O que nos diferencia</h2>
+    </div>
+    <div class="diff-list">
+      <div class="diff-item"><span class="check">✓</span> Não vendemos software</div>
+      <div class="diff-item"><span class="check">✓</span> Não começamos pela ferramenta</div>
+      <div class="diff-item"><span class="check">✓</span> Aproveitamos o que sua empresa já possui</div>
+      <div class="diff-item"><span class="check">✓</span> Entregamos capacitação para a equipe</div>
+      <div class="diff-item"><span class="check">✓</span> Construímos soluções de baixo investimento</div>
+    </div>
+  </div>
+</section>
+
+<section id="processo">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Metodologia</p>
+      <h2>Como funciona, do primeiro contato ao resultado</h2>
+    </div>
+    <div class="steps">
+      <div class="step" data-n="1">
+        <h4>Diagnóstico gratuito (20 min)</h4>
+        <p>Conversa rápida para entender onde está o maior gargalo — e um formulário simples que você preenche antes, pra otimizarmos o tempo da conversa.</p>
+      </div>
+      <div class="step" data-n="2">
+        <h4>Mapeamento do processo</h4>
+        <p>Desenho junto com você o fluxo atual: etapas, pessoas envolvidas e onde exatamente o tempo se perde.</p>
+      </div>
+      <div class="step" data-n="3">
+        <h4>Piloto de automação (1 a 2 semanas)</h4>
+        <p>Aplico a solução em um processo específico, priorizando ferramentas gratuitas e poderosas que sua empresa já tem à disposição — Google Workspace ou Microsoft 365. Quando faz sentido, também indico ferramentas de baixo custo específicas pra sua necessidade, sempre depois de confirmar que o resultado justifica o investimento. Resultado visível antes de qualquer decisão maior.</p>
+      </div>
+      <div class="step" data-n="4">
+        <h4>Capacitação e continuidade</h4>
+        <p>Treino sua equipe para manter a automação e, se fizer sentido, seguimos com acompanhamento mensal para expandir a outros processos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Perguntas frequentes</p>
+      <h2>O que você provavelmente está se perguntando</h2>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Preciso trocar de sistema?</div>
+      <div class="faq-a">Não. Priorizamos o que sua empresa já usa hoje — Google Workspace, Microsoft 365 ou o que já estiver em operação.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Minha empresa é pequena. Vale a pena?</div>
+      <div class="faq-a">Sim. Boa parte das soluções que aplicamos foram pensadas justamente para operações enxutas, sem equipe técnica dedicada.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">É seguro automatizar minha operação?</div>
+      <div class="faq-a">Sim. Trabalhamos com ecossistemas já testados e validados por milhões de empresas no mundo todo — Google Workspace e Microsoft 365. Seus dados continuam no ambiente que sua empresa já usa e confia; não instalamos sistema desconhecido nem experimental.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Quanto custa?</div>
+      <div class="faq-a">Depende do diagnóstico. O primeiro passo — mapear onde está o gargalo — é gratuito e sem compromisso.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Quanto tempo demora?</div>
+      <div class="faq-a">Pilotos normalmente acontecem entre 1 e 2 semanas, com resultado visível antes de qualquer decisão maior.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Vocês mudam tudo de uma vez?</div>
+      <div class="faq-a">Não. Seguimos a mesma metodologia de piloto usada por grandes empresas pra minimizar risco: aplicamos a solução num processo pequeno primeiro, você acompanha e avalia o resultado, e só depois decidimos juntos se e como expandir pra operação inteira.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Preciso contratar algum software?</div>
+      <div class="faq-a">Nem sempre. Uma ferramenta paga só entra na conversa se o resultado do piloto justificar o investimento.</div>
+    </div>
+  </div>
+</section>
+
+<section id="mapeamento">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Comece agora</p>
+      <h2>Mapeamento rápido da sua operação</h2>
+    </div>
+    <div class="map-card">
+      <div class="map-row">
+        <label for="mapNome">Seu nome</label>
+        <input type="text" id="mapNome" placeholder="Ex: Maria Silva">
+      </div>
+      <div class="map-row">
+        <label for="mapCargo">Qual sua função na empresa?</label>
+        <select id="mapCargo">
+          <option value="">Selecione</option>
+          <option value="Proprietário(a) / Sócio(a)">Proprietário(a) / Sócio(a)</option>
+          <option value="Diretor(a)">Diretor(a)</option>
+          <option value="Gerente">Gerente</option>
+          <option value="Coordenador(a)">Coordenador(a)</option>
+          <option value="Supervisor(a)">Supervisor(a)</option>
+          <option value="Analista">Analista</option>
+          <option value="Assistente / Auxiliar">Assistente / Auxiliar</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </div>
+      <div class="map-row">
+        <label for="mapEmpresa">Nome da empresa</label>
+        <input type="text" id="mapEmpresa" placeholder="Ex: Distribuidora Santos Ltda">
+      </div>
+      <div class="map-row">
+        <label for="mapRamo">Qual o ramo da empresa?</label>
+        <input type="text" id="mapRamo" placeholder="Ex: imobiliária, logística, comércio e varejo, saúde...">
+      </div>
+      <div class="map-row">
+        <label for="mapAtividade">Qual atividade manual mais toma tempo da sua equipe hoje?</label>
+        <textarea id="mapAtividade" rows="3" placeholder="Ex: Toda triagem de pedido por e-mail é feita manualmente por uma pessoa"></textarea>
+      </div>
+      <div class="map-row">
+        <label for="mapFrequencia">Com que frequência isso acontece?</label>
+        <input type="text" id="mapFrequencia" placeholder="Ex: Todos os dias, várias vezes por dia">
+      </div>
+      <button class="btn-primary map-btn" id="mapEnviar">Enviar mapeamento pelo WhatsApp</button>
+      <p class="map-hint">Isso abre o WhatsApp com sua resposta já preenchida — sem necessidade de repetir tudo numa call.</p>
+    </div>
+  </div>
+</section>
+
+<section id="diagnostico">
+  <div class="wrap">
+    <div class="cta-final">
+      <div>
+        <h2>Vamos destravar sua operação?</h2>
+        <p>20 minutos, sem compromisso. Você sai da conversa sabendo onde está o gargalo e qual caminho faz sentido — antes de decidir qualquer ferramenta ou investimento.</p>
+      </div>
+      <a class="btn-primary" href="https://wa.me/5513996319150" target="_blank">Agendar pelo WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<a href="https://w.app/tls1az" target="_blank" class="whatsapp-float" aria-label="Falar no WhatsApp">💬</a>
+
+<footer>
+  <div class="wrap">
+    <div><strong>Cida Moreira</strong> · Fundadora AscenDeres · Baixada Santista, SP</div>
+    <div class="footer-links">
+      <a href="https://linktr.ee/ascenderes" target="_blank">Linktree</a>
+      <a href="https://www.instagram.com/ascenderes" target="_blank">Instagram</a>
+      <a href="[LINK DO LINKEDIN DA ASCENDERES]" target="_blank">LinkedIn AscenDeres</a>
+      <a href="[LINK DO SEU LINKEDIN PESSOAL]" target="_blank">LinkedIn Cida Moreira</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const minutos = document.getElementById('minutos');
+  const frequencia = document.getElementById('frequencia');
+  const minVal = document.getElementById('minVal');
+  const freqVal = document.getElementById('freqVal');
+  const horasMes = document.getElementById('horasMes');
+
+  function formatBR(num){
+    return num.toLocaleString('pt-BR', {minimumFractionDigits:1, maximumFractionDigits:1});
+  }
+
+  function formatTempo(min){
+    if (min < 60) return min + ' min';
+    const h = Math.floor(min / 60);
+    const m = min % 60;
+    return m === 0 ? h + 'h' : h + 'h ' + m + 'min';
+  }
+
+  function calcular(){
+    const min = parseInt(minutos.value, 10);
+    const freq = parseInt(frequencia.value, 10);
+    minVal.textContent = formatTempo(min);
+    freqVal.textContent = freq;
+
+    const minutosDiarios = min * freq;
+    const horasDiarias = minutosDiarios / 60;
+    const horasRecuperadasDia = horasDiarias * 0.9; // 90% automatizável
+    const horasRecuperadasMes = horasRecuperadasDia * 22; // dias úteis
+
+    horasMes.textContent = formatBR(horasRecuperadasMes) + 'h';
+  }
+
+  minutos.addEventListener('input', calcular);
+  frequencia.addEventListener('input', calcular);
+  calcular();
+
+  // Calculadora 2 — custo do retrabalho em R$
+  const funcionarios = document.getElementById('funcionarios');
+  const salario = document.getElementById('salario');
+  const horasPerdidas = document.getElementById('horasPerdidas');
+  const cltCheck = document.getElementById('cltCheck');
+  const funcVal = document.getElementById('funcVal');
+  const salVal = document.getElementById('salVal');
+  const horasVal = document.getElementById('horasVal');
+  const custoMes = document.getElementById('custoMes');
+  const custo6m = document.getElementById('custo6m');
+  const custo12m = document.getElementById('custo12m');
+
+  function formatBRL(num){
+    return num.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL', maximumFractionDigits: 0});
+  }
+
+  function calcularCusto(){
+    const func = parseInt(funcionarios.value, 10);
+    const sal = parseInt(salario.value, 10);
+    const horas = parseInt(horasPerdidas.value, 10);
+    const isClt = cltCheck.checked;
+
+    funcVal.textContent = func;
+    salVal.textContent = formatBRL(sal);
+    horasVal.textContent = horas;
+
+    // Com CLT, o custo real pra empresa é maior que o salário bruto (encargos ~80%: FGTS, INSS, férias, 13º etc.)
+    const salarioReal = isClt ? sal * 1.8 : sal;
+    const valorHora = salarioReal / 220; // divisor padrão de horas mensais no Brasil
+    const custoTotal = func * horas * valorHora;
+
+    const custoMensal = Math.round(custoTotal / 10) * 10;
+    custoMes.textContent = formatBRL(custoMensal);
+    custo6m.textContent = formatBRL(custoMensal * 6);
+    custo12m.textContent = formatBRL(custoMensal * 12);
+  }
+
+  funcionarios.addEventListener('input', calcularCusto);
+  salario.addEventListener('input', calcularCusto);
+  horasPerdidas.addEventListener('input', calcularCusto);
+  cltCheck.addEventListener('change', calcularCusto);
+  calcularCusto();
+
+  // Mini-mapeamento -> WhatsApp
+  const mapBtn = document.getElementById('mapEnviar');
+  mapBtn.addEventListener('click', () => {
+    const nome = document.getElementById('mapNome').value.trim() || '(não informado)';
+    const cargo = document.getElementById('mapCargo').value.trim() || '(não informado)';
+    const empresa = document.getElementById('mapEmpresa').value.trim() || '(não informado)';
+    const ramo = document.getElementById('mapRamo').value.trim() || '(não informado)';
+    const atividade = document.getElementById('mapAtividade').value.trim() || '(não informado)';
+    const freq = document.getElementById('mapFrequencia').value.trim() || '(não informado)';
+
+    const url = `https://wa.me/5513996319150?text=${encodeURIComponent(
+      `Olá, Cida! Meu nome é ${nome}, sou ${cargo} na ${empresa}, e quero fazer o mapeamento rápido da minha operação.\n\n` +
+      `Ramo: ${ramo}\n` +
+      `Atividade manual que mais toma tempo: ${atividade}\n` +
+      `Frequência: ${freq}`
+    )}`;
+
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>
